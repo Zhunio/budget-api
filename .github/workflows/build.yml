@@ -20,5 +20,14 @@ jobs:
         run: npm run format
       - name: Run linter
         run: npm run lint
+
+      - name: Start database
+        run: npm db:start
+      - name: Wait for database to be ready
+        run: sleep 20
+      - name: Apply migrations to database
+        run: npm run migration:deploy
       - name: Run tests
         run: npm run test
+      - name: Shutdown database
+        run: npm run db:stop
