@@ -1,12 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import packageJson from '../package.json';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getVersion(): string {
+    return `Welcome to Budget API v${packageJson.version}`;
   }
 }

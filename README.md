@@ -8,6 +8,44 @@ Simple budget api
 $ npm install
 ```
 
+## Environment Variables
+```bash
+# mysql://USER:PASSWORD@HOST:PORT/DATABASE
+DATABASE_URL=mysql://root:password@localhost:3306/budget
+PORT=3000
+```
+
+## Start database
+
+```bash
+$ npm run db:start
+```
+
+## Stop database
+
+```bash
+$ npm run db:stop
+```
+
+## Deploy migrations
+
+```bash
+$ npm run migration:deploy
+```
+
+## Create migration
+
+```bash
+$ npm run migration:create -- {add_cat_table}
+```
+
+## Access phpMyAdmin
+
+```bash
+username=root
+password=password
+```
+
 ## Running the app
 
 ```bash
@@ -20,7 +58,6 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-
 ## Test
 
 ```bash
