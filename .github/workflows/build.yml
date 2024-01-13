@@ -29,5 +29,7 @@ jobs:
         run: npm run migration:deploy
       - name: Run tests
         run: npm run test
+      - name: Run e2e tests
+        run: npm run test:e2e
       - name: Shutdown database
         run: npm run db:stop
