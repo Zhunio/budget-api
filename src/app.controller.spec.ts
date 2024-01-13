@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import packageJson from '../package.json';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -15,7 +14,7 @@ describe('AppController', () => {
 
   describe('getVersion()', () => {
     it('should return "Welcome to Budget API vx.x.x"', () => {
-      expect(appController.getVersion()).toBe(`Welcome to Budget API v${packageJson.version}`);
+      expect(appController.getVersion()).toBe('Welcome to Budget API v0.0.2-beta.1');
     });
   });
 });
