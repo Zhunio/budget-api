@@ -22,7 +22,7 @@ jobs:
         run: npm run lint
 
       - name: Start database
-        run: npm db:start
+        run: npm run db:start
       - name: Wait for database to be ready
         run: sleep 20
       - name: Apply migrations to database
