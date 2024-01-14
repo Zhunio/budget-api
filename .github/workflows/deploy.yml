@@ -49,4 +49,4 @@ jobs:
             pm2 delete main
 
             echo '***DEPLOYER*** Running app'
-            pm2 start dist/main.js --name main
+            pm2 start dist/src/main.js --name main
