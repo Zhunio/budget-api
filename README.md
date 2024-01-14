@@ -1,6 +1,6 @@
 ## Description
 
-Simple budget api 
+Simple budget api
 
 ## Installation
 
@@ -9,6 +9,7 @@ $ npm install
 ```
 
 ## Environment Variables
+
 ```bash
 # mysql://USER:PASSWORD@HOST:PORT/DATABASE
 DATABASE_URL=mysql://root:password@localhost:3306/budget
@@ -58,6 +59,13 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Stop running app
+
+```bash
+$ npm run delete:prod
+```
+
 ## Test
 
 ```bash
