@@ -14,7 +14,7 @@ describe('AppController', () => {
 
   describe('getVersion()', () => {
     it('should return "Welcome to Budget API vx.x.x"', () => {
-      expect(appController.getVersion()).toBe('Welcome to Budget API v0.0.2-beta.1');
+      expect(appController.getVersion()).toBe(`Welcome to Budget API v${require('../package.json').version}`);
     });
   });
 });

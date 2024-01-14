@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
   @Get()
   getVersion(): string {
-    return 'Welcome to Budget API v0.0.2-beta.1';
+    return `Welcome to Budget API v${require('../package.json').version}`;
   }
 }
