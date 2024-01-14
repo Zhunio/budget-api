@@ -15,31 +15,38 @@ jobs:
           host: ${{ secrets.HOSTNAME }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          source: ".,!.github"
+          source: '.,!.github'
           target: ${{ secrets.DEPLOY_DIRECTORY }}
           rm: true # Remove target folder before upload data
-      
+
       - name: SSH to server & Deploy app
         uses: appleboy/ssh-action@v1.0.0
         env:
           DEPLOY_DIRECTORY: ${{ secrets.DEPLOY_DIRECTORY }}
+          ENV_FILE: ${{ secrets.ENV_FILE }}
         with:
           host: ${{ secrets.HOSTNAME }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          envs: DEPLOY_DIRECTORY
+          envs: DEPLOY_DIRECTORY,ENV_FILE
           script: |
             echo "***DEPLOYER***: Change to deploy directory..."
             cd $DEPLOY_DIRECTORY
-            
+
+            echo '***DEPLOYER*** Override .env file'
+            echo -e "$ENV_FILE" > .env
+
             echo '***DEPLOYER*** Install dependencies'
             npm install
 
             echo '***DEPLOYER*** Build code'
             npm run build
 
+            echo '***DEPLOYER*** Apply migrations to database'
+            npm run migration:deploy
+
             echo "***DEPLOYER*** Delete running app"
-            pm2 delete main
+            npm run delete:prod
 
             echo '***DEPLOYER*** Running app'
-            pm2 start dist/main.js --name main
+            npm run start:prod
