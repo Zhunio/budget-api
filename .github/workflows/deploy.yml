@@ -34,7 +34,7 @@ jobs:
             cd $DEPLOY_DIRECTORY
 
             echo '***DEPLOYER*** Override .env file'
-            echo -e $ENV_FILE > .env
+            echo -e "$ENV_FILE" > .env
 
             echo '***DEPLOYER*** Install dependencies'
             npm install
