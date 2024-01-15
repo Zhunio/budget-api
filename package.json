@@ -15,8 +15,6 @@
     "delete:prod": "pm2 delete main",
     "db:start": "docker-compose up -d",
     "db:stop": "docker-compose down",
-    "migration:deploy": "prisma migrate deploy",
-    "migration:create": "prisma migrate dev --name",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watch",

@@ -43,7 +43,7 @@ jobs:
             npm run build
 
             echo '***DEPLOYER*** Apply migrations to database'
-            npm run migration:deploy
+            npx prisma migrate deploy
 
             echo "***DEPLOYER*** Delete running app"
             npm run delete:prod
