@@ -31,13 +31,19 @@ $ npm run db:stop
 ## Deploy migrations
 
 ```bash
-$ npm run migration:deploy
+$ npx prisma migrate deploy
 ```
 
 ## Create migration
 
 ```bash
-$ npm run migration:create -- {add_cat_table}
+$ npx prisma migrate dev --name {migration_name}
+```
+
+## Prototype migration
+
+```bash
+$ npx prisma db push
 ```
 
 ## Access phpMyAdmin
