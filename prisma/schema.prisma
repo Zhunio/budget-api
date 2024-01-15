@@ -21,4 +21,16 @@ model Income {
   receivedDate String
   amount String
   initialBalance String
+  expenses Expense[]
+}
+
+model Expense {
+  id Int @id @default(autoincrement())
+  name String
+  amount String
+  dueDate String
+  isAllocated Boolean
+  isPaid Boolean
+  income Income? @relation(fields: [incomeId], references: [id])
+  incomeId Int?
 }
