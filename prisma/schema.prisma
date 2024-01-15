@@ -14,3 +14,11 @@ model Dummy {
   id   Int    @id @default(autoincrement())
   name String
 }
+
+model Income {
+  id Int @id @default(autoincrement())
+  name String
+  receivedDate String
+  amount String
+  initialBalance String
+}
