@@ -34,6 +34,12 @@ $ npm run db:stop
 $ npx prisma migrate deploy
 ```
 
+## Generate client
+
+```bash
+$ npx prisma generate
+```
+
 ## Create migration
 
 ```bash
