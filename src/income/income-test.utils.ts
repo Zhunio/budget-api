@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { Income, Prisma } from '@prisma/client';
-import * as request from 'supertest';
+import request from 'supertest';
 
 export class IncomeReq {
   private req: request.Agent;
