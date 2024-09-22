@@ -1,5 +1,10 @@
 on:
   workflow_call:
+    inputs:
+      commit_hash:
+        type: string
+        description: 'Commit hash to deploy (Optional)'
+        default: ${{ github.sha }}
 
 jobs:
   deploy:
@@ -8,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.commit_hash }}
 
       - name: Transfer files to server
         uses: appleboy/scp-action@master
