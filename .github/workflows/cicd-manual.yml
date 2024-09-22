@@ -1,0 +1,24 @@
+name: CI/CD Manual Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_hash:
+        description: 'Commit hash to deploy'
+        required: true
+        default: 'HEAD'
+
+jobs:
+  build:
+    name: Build
+    uses: ./.github/workflows/build.yml
+    with:
+      commit_hash: ${{ github.event.inputs.commit_hash }}
+
+  deploy:
+    name: Deploy
+    needs: build
+    secrets: inherit
+    uses: ./.github/workflows/deploy.yml
+    with:
+      commit_hash: ${{ github.event.inputs.commit_hash }}
