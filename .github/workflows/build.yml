@@ -23,13 +23,20 @@ jobs:
 
       - name: Start database
         run: npm run db:start
+
+      - name: Download wait-for-it script
+        run: curl -o wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
+      - name: Make wait-for-it script executable
+        run: chmod +x wait-for-it.sh
       - name: Wait for database to be ready
-        run: sleep 20
+        run: ./wait-for-it.sh localhost:5432 --timeout=60 --strict -- echo "Database is ready"
       - name: Apply migrations to database
         run: npx prisma migrate deploy
+
       - name: Run tests
         run: npm run test
       - name: Run e2e tests
         run: npm run test:e2e
+
       - name: Shutdown database
         run: npm run db:stop
