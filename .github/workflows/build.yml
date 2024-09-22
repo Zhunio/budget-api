@@ -29,7 +29,7 @@ jobs:
       - name: Make wait-for-it script executable
         run: chmod +x wait-for-it.sh
       - name: Wait for database to be ready
-        run: ./wait-for-it.sh localhost:5432 --timeout=60 --strict -- echo "Database is ready"
+        run: ./wait-for-it.sh localhost:3306 --timeout=60 --strict -- echo "Database is ready"
       - name: Apply migrations to database
         run: npx prisma migrate deploy
 
