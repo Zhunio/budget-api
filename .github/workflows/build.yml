@@ -1,10 +1,9 @@
+name: Build
+
 on:
-  workflow_call:
-    inputs:
-      commit_hash:
-        type: string
-        description: 'Commit hash to deploy (Optional)'
-        default: ${{ github.sha }}
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   build:
@@ -13,14 +12,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          ref: ${{ inputs.commit_hash }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
           cache: 'npm'
+
       - name: Install dependencies
         run: npm ci
       
