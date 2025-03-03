@@ -120,6 +120,39 @@ describe('IncomeController', () => {
       expect(body.message).toEqual(IncomeError.CouldNotUpdateIncome);
       expect(statusCode).toEqual(HttpStatus.INTERNAL_SERVER_ERROR);
     });
+
+    describe('when expense is added to income', () => {
+      it('should sum expenses', async () => {
+        const incomeCreateDto: Prisma.IncomeCreateInput = {
+          name: '01/05/2024',
+          receivedDate: '01/05/2024',
+          initialBalance: '0.00',
+          amount: '0.00',
+        };
+
+        const {
+          body: { id },
+        } = await incomeReq.createIncome(incomeCreateDto);
+
+        const expenseCreateDto: Prisma.ExpenseCreateInput = {
+          name: 'Rent',
+          amount: '1500.00',
+          dueDate: '01/01/2024',
+          isAllocated: false,
+          isPaid: false,
+          income: {
+            connect: { id },
+          },
+        };
+        const { body: expense } = await expenseReq.createExpense(expenseCreateDto);
+
+        const { body: income } = await incomeReq.updateIncome(id, {
+          expenses: { connect: { id: expense.id } },
+        });
+
+        expect(income.amount).toEqual('1500.00');
+      });
+    });
   });
 
   describe('addExpenseToIncome()', () => {
